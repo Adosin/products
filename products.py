@@ -1,4 +1,17 @@
-products =[] 
+# 讀取檔案 split 切割
+# 去掉換行符號 strip 
+
+products = []
+with open('products.csv', 'r', encoding='utf-8') as f:
+	for line in f:
+		if '商品,價格' in line:
+			continue # 繼續,跳到新的迴圈
+		name, price = line.strip().split(',')
+		products.append([name, price])
+
+print(products)
+
+# 讓使用者輸入
 while True:
 	name = input('請輸入商品名稱: ')
 	if name == 'q':
@@ -12,6 +25,7 @@ while True:
 	products.append([name, price])
 print(products)  
 
+# 印出所有購買紀錄
 for p in products:
 	print(p) 
 
@@ -25,6 +39,7 @@ for p in products:
 # 程式說明 轉整數 price = int(price)
 # 程式說明 轉字串 price = str(price)
 
+# 寫入檔案
 print('-----------------') 
 with open('products.csv', 'w', encoding='utf-8') as f: # 當作 f 檔案
 	f.write('商品,價格\n')
